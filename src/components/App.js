@@ -5,14 +5,15 @@ import { GlobalStyle } from '../styles/global';
 
 import Home from './Home/Home';
 import SignUpPage from './Sign/SignUpPage';
+import SignInPage from './Sign/SignInPage';
 
 export default function App( ) {
 
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Home />}/>
-      {/* <Route path='/sign-in' element={<SignInPage />}/> */}
+      {/* <Route path='/' element={<Home />}/> */}
+      <Route path='/' element={<SignInPage />}/>
       <Route path='/sign-up' element={<SignUpPage />}/>
       </Routes>
       <GlobalStyle />

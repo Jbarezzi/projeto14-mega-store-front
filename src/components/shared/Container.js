@@ -22,7 +22,7 @@ const ContainerGlobal = styled.div`
     width: 375px;
     height: 660px;
     z-index: 1;
-    background: var(--background);
+    background: var(--background-area-inputs);
 
     //transition: all .3s ease;
 

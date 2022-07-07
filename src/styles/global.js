@@ -36,7 +36,7 @@ export const GlobalStyle = createGlobalStyle`
         scrollbar-width: none;
         -ms-overflow-style: none;
 
-        background: var(--background); 
+        background: var(--background-area-inputs); 
         -webkit-font-smoothing: antialiased;
     }
 
@@ -47,6 +47,10 @@ export const GlobalStyle = createGlobalStyle`
     body, input, textarea, span, button {
         font-family: 'Roboto', sans-serif;
         font-weight: 500;
+    }
+
+    a {
+        text-decoration: none;
     }
 
     h1, h2, h3, h4, h5, h6, strong {
