@@ -22,7 +22,8 @@ const ContainerGlobal = styled.div`
     width: 375px;
     height: 660px;
     z-index: 1;
-    background: var(--background);
+    background-color: var(--background-style);
+    border-radius: 8px;
 
     //transition: all .3s ease;
 
