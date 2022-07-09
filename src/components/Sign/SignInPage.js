@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ThreeDots } from "react-loader-spinner";
+import UserContext from "../../contexts/UserContext";
 import { login } from "./../../services"
-import { Link, useNavigate } from "react-router-dom";
 
 const Form = styled.form`
     display: flex;
@@ -48,8 +49,9 @@ const StyledContainer = styled.div`
 `;
 
 function SignInPage() {
+    const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
-    const [user, setUser] = useState({
+    const [userLogin, setUserLogin] = useState({
         email: "",
         password: "",
     });
@@ -59,8 +61,9 @@ function SignInPage() {
         e.preventDefault();
         setLoad(true);
         try {
-            await login(user);
+            const response = await login(userLogin);
             setLoad(false);
+            setUser(response.data);
             navigate("/", { replace: true });
         } catch(error) {
             setLoad(false);
@@ -76,16 +79,16 @@ function SignInPage() {
                     type="email" 
                     required 
                     placeholder="Email" 
-                    value={user.email}
+                    value={userLogin.email}
                     disabled={load} 
-                    onChange={(e) => setUser({ ...user, email: e.target.value })} />
+                    onChange={(e) => setUserLogin({ ...userLogin, email: e.target.value })} />
                 <input 
                     type="password" 
                     required 
                     placeholder="Senha" 
-                    value={user.password}
+                    value={userLogin.password}
                     disabled={load} 
-                    onChange={(e) => setUser({ ...user, password: e.target.value })} />
+                    onChange={(e) => setUserLogin({ ...userLogin, password: e.target.value })} />
                 <button type="submit" disabled={load}>
                     { load ? <ThreeDots color="#FFFFFF" width="54" height="15" /> : "Entrar"}
                 </button>
