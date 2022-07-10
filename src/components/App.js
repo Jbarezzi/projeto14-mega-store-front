@@ -1,21 +1,25 @@
-import React from 'react'; 
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { GlobalStyle } from '../styles/global';
 
 import Home from './Home/Home';
 import SignUpPage from './Sign/SignUpPage';
+import SignInPage from './Sign/SignInPage';
+import UserContext from "./../contexts/UserContext"
 
 export default function App( ) {
-
+  const [user, setUser] = useState();
   return (
-    <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<Home />}/>
-      {/* <Route path='/sign-in' element={<SignInPage />}/> */}
-      <Route path='/sign-up' element={<SignUpPage />}/>
-      </Routes>
-      <GlobalStyle />
-    </BrowserRouter>
+    <UserContext.Provider value={{user, setUser}}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='/login' element={<SignInPage />}/>
+          <Route path='/sign-up' element={<SignUpPage />}/>
+        </Routes>
+        <GlobalStyle />
+      </BrowserRouter>
+    </UserContext.Provider>
   )
 }
