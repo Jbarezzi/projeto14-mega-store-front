@@ -51,18 +51,14 @@ export default function SignUpPage() {
     return cpfTeste.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
 }
 
-
-
-
-
-  function validateCPF(number){
+/*   function validateCPF(number){
     return number
     .replace(/\D/g,'')
     .replace(/(\d{3})(\d)/,'$1.$2')
     .replace(/(\d{3})(\d)/,'$2.$3')
     .replace(/(\d{3})(\d)/,'$3-$4')
     .replace(/(\d{2})(\d)/g,'$1');
-  }
+  } */
 
   return (
     <Container>
@@ -196,10 +192,10 @@ const Button = styled.button`
     height: 46px;
 
 
-    a { 
+  /*   a { 
         text-decoration: none;
         color: var(--white);
-    }
+    } */
 
     background: var(--background-buttons);
     border-radius: 8px;

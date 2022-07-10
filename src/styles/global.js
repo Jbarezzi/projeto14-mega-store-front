@@ -30,7 +30,8 @@ export const GlobalStyle = createGlobalStyle`
     //REM - medida, 1rem = font-size = 16px 
 
     body {
-        width: 100vw; 
+        margin: 0 auto;
+        width: 100%; 
         display: flex;
         justify-content: center;
         scrollbar-width: none;
@@ -38,6 +39,7 @@ export const GlobalStyle = createGlobalStyle`
 
         background: var(--background); 
         -webkit-font-smoothing: antialiased;
+
     }
 
     body::-webkit-scrollbar{
@@ -61,4 +63,5 @@ export const GlobalStyle = createGlobalStyle`
         opacity: 0.6;
         cursor: not-allowed;
     }
+
 `
