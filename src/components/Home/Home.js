@@ -27,58 +27,55 @@ export default function Home() {
     console.log(selectedOption);
   };
 
-/*   const options = [
-    'one', 'two', 'three'
-  ];
-  const defaultOption = options[0];
-   */
+  useEffect(() => {
+    const promotionProducts = getProducts(true);
+    
+  });
+
   return (
     <>
-    <Header>
-   {/*    <Menu>
+      <Header>
+    {/*    <Menu>
 
 
-        <ButtonMenu>
+          <ButtonMenu>
 
-         <Dropdown options={options}
-         //onChange={this._onSelect}
-          //value={defaultOption}
-           placeholder= {<PencilLine />} />;  
-        </ButtonMenu>
-      </Menu> */}
+          <Dropdown options={options}
+          //onChange={this._onSelect}
+            //value={defaultOption}
+            placeholder= {<PencilLine />} />;  
+          </ButtonMenu>
+        </Menu> */}
 
-      
-<DropDownContainer>
-        <DropDownHeader onClick={toggling}>
-        <List size={32} />
-          {selectedOption || "Categoria"}
-        </DropDownHeader>
-        {isOpen && (
-          <DropDownListContainer>
-            <DropDownList>
-              {options.map(option => (
-                <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
-                  {option}
-                </ListItem>
-              ))}
-            </DropDownList>
-          </DropDownListContainer>
-        )}
-      </DropDownContainer>
-   
-      <h1>MegaStore</h1>
-      <SignInContainer>
-      <Link to='/sign-n'>
-      <SignIn size={32}/>
-      </Link>
-      </SignInContainer>
-    </Header>
-
-    {/*   <Container>
-
-        <H1>Listagem de Produtos</H1>
-
-      </Container> */}
+        
+  <DropDownContainer>
+          <DropDownHeader onClick={toggling}>
+          <List size={32} />
+            {selectedOption || "Categoria"}
+          </DropDownHeader>
+          {isOpen && (
+            <DropDownListContainer>
+              <DropDownList>
+                {options.map(option => (
+                  <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
+                    {option}
+                  </ListItem>
+                ))}
+              </DropDownList>
+            </DropDownListContainer>
+          )}
+        </DropDownContainer>
+    
+        <h1>MegaStore</h1>
+        <SignInContainer>
+        <Link to='/sign-in'>
+        <SignIn size={32}/>
+        </Link>
+        </SignInContainer>
+      </Header>
+      <ProductsContainer>
+                  
+      </ProductsContainer>            
     </>
   )
 }
@@ -149,4 +146,6 @@ const ListItem   = styled.li`
   margin-bottom: 0.8em;
 `
 
+const ProductsContainer = styled.div`
 
+`;

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ThreeDots } from "react-loader-spinner";
 import UserContext from "../../contexts/UserContext";
-import { login } from "./../../services"
+import { login } from "./../../services";
 
 const Form = styled.form`
     display: flex;
