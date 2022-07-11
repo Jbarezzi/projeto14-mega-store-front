@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 //import Container from '../shared/Container';
 import Header from '../shared/Header';
 import styled from 'styled-components';
-
+import ProductCard from "./ProductCard";
+import { getProducts } from "./../../services/index";
 //import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
@@ -17,6 +18,9 @@ export default function Home() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [orderByPromotion, setOrderByPromotion] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
 
   const toggling = () => setIsOpen(!isOpen); 
@@ -27,58 +31,58 @@ export default function Home() {
     console.log(selectedOption);
   };
 
-/*   const options = [
-    'one', 'two', 'three'
-  ];
-  const defaultOption = options[0];
-   */
+  useEffect(() => {
+    const promise = getProducts(orderByPromotion, selectedOption);
+    promise.then((res) => {
+      setProducts(res.data);
+    });
+  },[orderByPromotion, selectedOption]);
+
   return (
     <>
-    <Header>
-   {/*    <Menu>
+      <Header>
+    {/*    <Menu>
 
 
-        <ButtonMenu>
+          <ButtonMenu>
 
-         <Dropdown options={options}
-         //onChange={this._onSelect}
-          //value={defaultOption}
-           placeholder= {<PencilLine />} />;  
-        </ButtonMenu>
-      </Menu> */}
+          <Dropdown options={options}
+          //onChange={this._onSelect}
+            //value={defaultOption}
+            placeholder= {<PencilLine />} />;  
+          </ButtonMenu>
+        </Menu> */}
 
-      
-<DropDownContainer>
-        <DropDownHeader onClick={toggling}>
-        <List size={32} />
-          {selectedOption || "Categoria"}
-        </DropDownHeader>
-        {isOpen && (
-          <DropDownListContainer>
-            <DropDownList>
-              {options.map(option => (
-                <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
-                  {option}
-                </ListItem>
-              ))}
-            </DropDownList>
-          </DropDownListContainer>
-        )}
-      </DropDownContainer>
-   
-      <h1>MegaStore</h1>
-      <SignInContainer>
-      <Link to='/sign-n'>
-      <SignIn size={32}/>
-      </Link>
-      </SignInContainer>
-    </Header>
-
-    {/*   <Container>
-
-        <H1>Listagem de Produtos</H1>
-
-      </Container> */}
+        
+  <DropDownContainer>
+          <DropDownHeader onClick={toggling}>
+          <List size={32} />
+            {selectedOption || "Categoria"}
+          </DropDownHeader>
+          {isOpen && (
+            <DropDownListContainer>
+              <DropDownList>
+                {options.map(option => (
+                  <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
+                    {option}
+                  </ListItem>
+                ))}
+              </DropDownList>
+            </DropDownListContainer>
+          )}
+        </DropDownContainer>
+    
+        <h1>MegaStore</h1>
+        
+        <SignInContainer>
+        <Link to='/sign-in'>
+        <SignIn size={32}/>
+        </Link>
+        </SignInContainer>
+      </Header>
+      <ProductsContainer>
+        {products ? products.map((product, index) => <ProductCard product={product} key={index} />) : ""}            
+      </ProductsContainer>            
     </>
   )
 }
@@ -149,4 +153,11 @@ const ListItem   = styled.li`
   margin-bottom: 0.8em;
 `
 
-
+const ProductsContainer = styled.div`
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 6rem;
+  row-gap: 3rem;
+  padding: 0 15rem;
+`;
