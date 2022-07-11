@@ -54,6 +54,20 @@ const HeaderGlobal = styled.header`
     //margin-top: 89px;
     color: var(--background-buttons);
   }
+
+  p {
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //margin-top: 89px;
+    color: var(--background-buttons);
+
+  }
     
 `
 
