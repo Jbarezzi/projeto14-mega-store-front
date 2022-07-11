@@ -1,7 +1,7 @@
 import React from 'react';
-
+import axios from "axios";
 import { useState, useEffect } from 'react';
-import { List, SignIn } from 'phosphor-react';
+import { List, SignIn, User } from 'phosphor-react';
 import { Link } from "react-router-dom";
 //import Container from '../shared/Container';
 import Header from '../shared/Header';
@@ -11,15 +11,26 @@ import { getProducts } from "./../../services/index";
 //import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
+
+
 const options = ["Casa", "Escritório", "Informática", "Escolar", "Esportes", "Livros"];
 
 export default function Home() {
+
+  const { user } = useContext(UserContext);
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [orderByPromotion, setOrderByPromotion] = useState(true);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+
+  const [categories, setCategories] = useState([]);
+
+  console.log(user.token); 
+  console.log(categories);
 
 
   const toggling = () => setIsOpen(!isOpen); 
@@ -29,14 +40,33 @@ export default function Home() {
     setIsOpen(false);
     console.log(selectedOption);
   };
+
+
+  useEffect(() => {
+    const API = 'https://taigamegastore.herokuapp.com/categories'
+
+    const promise = axios.get(API,null)
+
+    promise.then((res) => {
+      setCategories(res.data);
+    })
+
+  },[user])
+
+let filterCategories = categories.map((e) => {
+  return e.name;
+})
   
-    useEffect(() => {
+  useEffect(() => {
     const promise = getProducts(orderByPromotion, selectedOption);
     promise.then((res) => {
       setProducts(res.data);
     });
   },[orderByPromotion, selectedOption]);
 
+
+//console.log(filterCategories);
+//console.log(selectedOption);
 
   return (
     <>
@@ -49,7 +79,7 @@ export default function Home() {
           {isOpen && (
             <DropDownListContainer>
               <DropDownList>
-                {options.map(option => (
+                {filterCategories.map(option => (
                   <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
                     {option}
                   </ListItem>
@@ -58,14 +88,28 @@ export default function Home() {
             </DropDownListContainer>
           )}
         </DropDownContainer>
-    
+        {user === undefined ? 
+        <div>
+          <h1>MegaStore</h1>
+          <p>Para efetuar uma compra, faça login! </p>
+        </div>
+        : 
         <h1>MegaStore</h1>
+         }
         
-        <SignInContainer>
-        <Link to='/sign-in'>
-        <SignIn size={32}/>
-        </Link>
-        </SignInContainer>
+          {user === undefined ? 
+          <SignInContainer>
+          <Link to='/sign-in'>
+          <SignIn size={32}/>
+          </Link>
+          </SignInContainer>
+          : 
+          <SignInContainer>
+          <Link to='/'>
+          <User size={32} />
+          </Link>
+          </SignInContainer>
+          }
       </Header>
       <ProductsContainer>
         {products ? products.map((product, index) => <ProductCard product={product} key={index} />) : ""}            
