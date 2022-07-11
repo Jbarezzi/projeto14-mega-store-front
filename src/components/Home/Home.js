@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 //import Container from '../shared/Container';
 import Header from '../shared/Header';
 import styled from 'styled-components';
-
+import ProductCard from "./ProductCard";
+import { getProducts } from "./../../services/index";
 //import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
@@ -17,6 +18,9 @@ export default function Home() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [orderByPromotion, setOrderByPromotion] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
 
   const toggling = () => setIsOpen(!isOpen); 
@@ -28,9 +32,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const promotionProducts = getProducts(true);
-    
-  });
+    const promise = getProducts(orderByPromotion, selectedOption);
+    promise.then((res) => {
+      setProducts(res.data);
+    });
+  },[orderByPromotion, selectedOption]);
 
   return (
     <>
@@ -67,6 +73,7 @@ export default function Home() {
         </DropDownContainer>
     
         <h1>MegaStore</h1>
+        
         <SignInContainer>
         <Link to='/sign-in'>
         <SignIn size={32}/>
@@ -74,7 +81,7 @@ export default function Home() {
         </SignInContainer>
       </Header>
       <ProductsContainer>
-                  
+        {products ? products.map((product, index) => <ProductCard product={product} key={index} />) : ""}            
       </ProductsContainer>            
     </>
   )
@@ -147,5 +154,10 @@ const ListItem   = styled.li`
 `
 
 const ProductsContainer = styled.div`
-
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 6rem;
+  row-gap: 3rem;
+  padding: 0 15rem;
 `;

@@ -9,7 +9,7 @@ export default function Header({ children }) {
 
 const HeaderGlobal = styled.header` 
   margin: 0 auto;
-  width: 1440px;
+  width: 100%;
   height: 100px;
   //padding-left: 10px;
   background-color: var(--background-style);

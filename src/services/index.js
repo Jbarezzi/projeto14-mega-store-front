@@ -4,12 +4,12 @@ function login(user) {
     return axios.post("http://localhost:5000/login", user);
 }
 
-function getProducts(promotion) {
+function getProducts(promotion, category) {
     if(promotion === true) {
-        return axios.get("http://localhost:5000/promotions");
+        return axios.get(`http://localhost:5000/promotions?category${category}`);
     } else {
-        return axios.get("http://localhost:5000/products")
+        return axios.get(`http://localhost:5000/products${category}`)
     }
 }
 
-export { login };
+export { login, getProducts };
