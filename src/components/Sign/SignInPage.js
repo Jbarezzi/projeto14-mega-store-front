@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ThreeDots } from "react-loader-spinner";
 import UserContext from "../../contexts/UserContext";
-import { login } from "./../../services"
+import { login } from "./../../services";
 
 const Form = styled.form`
     display: flex;
@@ -32,21 +32,33 @@ const Form = styled.form`
     }
 `;
 
-const StyledContainer = styled.div`
+const ContainerSignUp = styled.div`
+    margin: 0 auto;
+    width: 326px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: var(--background-style);
+    height: 660px;
     h1 {
-        color: var(--white);
-        font-size: 30px;
+        font-family: 'Raleway', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 50px;
+        margin-top: 89px;
+        color: var(--background-buttons);
     }
     a {
-        margin-top: 15px;
-        font-weight: 700;
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+        text-decoration: none;
         color: var(--white);
     }
-`;
+`
 
 function SignInPage() {
     const { setUser } = useContext(UserContext);
@@ -72,7 +84,7 @@ function SignInPage() {
     }
 
     return(
-        <StyledContainer>
+        <ContainerSignUp>
             <h1>Mega Store</h1>
             <Form onSubmit={handleLogin}>
                 <input 
@@ -94,7 +106,7 @@ function SignInPage() {
                 </button>
             </Form>
             <Link to="/sign-up">Primeira vez? Cadastre-se</Link>
-        </StyledContainer>
+        </ContainerSignUp>
     );
 }
 
