@@ -15,8 +15,6 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 
-const options = ["Casa", "Escritório", "Informática", "Escolar", "Esportes", "Livros"];
-
 export default function Home() {
 
   const { user } = useContext(UserContext);
@@ -29,10 +27,6 @@ export default function Home() {
 
   const [categories, setCategories] = useState([]);
 
-  console.log(user.token); 
-  console.log(categories);
-
-
   const toggling = () => setIsOpen(!isOpen); 
 
   const onOptionClicked = value => () => {
@@ -40,7 +34,6 @@ export default function Home() {
     setIsOpen(false);
     console.log(selectedOption);
   };
-
 
   useEffect(() => {
     const API = 'https://taigamegastore.herokuapp.com/categories'
@@ -64,9 +57,6 @@ let filterCategories = categories.map((e) => {
     });
   },[orderByPromotion, selectedOption]);
 
-
-//console.log(filterCategories);
-//console.log(selectedOption);
 
   return (
     <>
