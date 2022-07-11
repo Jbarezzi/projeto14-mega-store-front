@@ -11,8 +11,7 @@ import { getProducts } from "./../../services/index";
 //import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-const options = ["Mangoes", "Apples", "Oranges"];
-
+const options = ["Casa", "Escritório", "Informática", "Escolar", "Esportes", "Livros"];
 
 export default function Home() {
 
@@ -30,30 +29,18 @@ export default function Home() {
     setIsOpen(false);
     console.log(selectedOption);
   };
-
-  useEffect(() => {
+  
+    useEffect(() => {
     const promise = getProducts(orderByPromotion, selectedOption);
     promise.then((res) => {
       setProducts(res.data);
     });
   },[orderByPromotion, selectedOption]);
 
+
   return (
     <>
-      <Header>
-    {/*    <Menu>
-
-
-          <ButtonMenu>
-
-          <Dropdown options={options}
-          //onChange={this._onSelect}
-            //value={defaultOption}
-            placeholder= {<PencilLine />} />;  
-          </ButtonMenu>
-        </Menu> */}
-
-        
+      <Header>  
   <DropDownContainer>
           <DropDownHeader onClick={toggling}>
           <List size={32} />
@@ -93,16 +80,12 @@ a {
         color: var(--background-buttons);
     }
 cursor: pointer;
-//width: 12rem;
-//height: 3.125rem;
-//color: var(--background-buttons);
 
 `
 
 const DropDownContainer = styled.button`
   width: 12rem;
   height: 3.125rem;
-  //margin: 0 auto;
   cursor: pointer;
   background: transparent;
   border: 1px solid var(--background-buttons-light);

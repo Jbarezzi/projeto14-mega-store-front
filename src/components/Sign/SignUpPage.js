@@ -31,12 +31,12 @@ export default function SignUpPage() {
 
     }
 
-    const SIGN_UP_API = 'http://localhost:5007/sign-up';
+    const SIGN_UP_API = 'https://taigamegastore.herokuapp.com/sign-up';
 
     const promise = axios.post(SIGN_UP_API, body);
     promise
     .then((res) => {
-      navigate("/sign-in");
+      navigate("/login");
       console.log(res.data);
     })
     .catch(error => {
