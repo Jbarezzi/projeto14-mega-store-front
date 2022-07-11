@@ -7,10 +7,16 @@ import { Link } from "react-router-dom";
 import Header from '../shared/Header';
 import styled from 'styled-components';
 
-//import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-const options = ["Mangoes", "Apples", "Oranges"];
+const options = ["Casa", "Escritório", "Informática", "Escolar", "Esportes", "Livros"];
+
+/* [ { "name" : "Casa", "description" : "itens para casa em geral" },
+{ "name" : "Escritório", "description" : "itens para escritório em geral" },
+{ "name" : "Informática", "description" : "itens para informática em geral" },
+{ "name" : "Escolar", "description" : "itens de material escolar em geral" },
+{ "name" : "Esportes", "description" : "itens para prática de esportes em geral" },
+{ "name" : "Livros", "description" : "itens de livros em geral" } ] */
 
 
 export default function Home() {
@@ -27,29 +33,11 @@ export default function Home() {
     console.log(selectedOption);
   };
 
-/*   const options = [
-    'one', 'two', 'three'
-  ];
-  const defaultOption = options[0];
-   */
   return (
     <>
     <Header>
-   {/*    <Menu>
-
-
-        <ButtonMenu>
-
-         <Dropdown options={options}
-         //onChange={this._onSelect}
-          //value={defaultOption}
-           placeholder= {<PencilLine />} />;  
-        </ButtonMenu>
-      </Menu> */}
-
-      
-<DropDownContainer>
-        <DropDownHeader onClick={toggling}>
+    <DropDownContainer>
+      <DropDownHeader onClick={toggling}>
         <List size={32} />
           {selectedOption || "Categoria"}
         </DropDownHeader>
@@ -64,22 +52,15 @@ export default function Home() {
             </DropDownList>
           </DropDownListContainer>
         )}
-      </DropDownContainer>
-   
+  </DropDownContainer>
       <h1>MegaStore</h1>
       <SignInContainer>
-      <Link to='/sign-n'>
+      <Link to='/login'>
       <SignIn size={32}/>
       </Link>
       </SignInContainer>
-    </Header>
-
-    {/*   <Container>
-
-        <H1>Listagem de Produtos</H1>
-
-      </Container> */}
-    </>
+  </Header>
+</>
   )
 }
 
@@ -89,16 +70,12 @@ a {
         color: var(--background-buttons);
     }
 cursor: pointer;
-//width: 12rem;
-//height: 3.125rem;
-//color: var(--background-buttons);
 
 `
 
 const DropDownContainer = styled.button`
   width: 12rem;
   height: 3.125rem;
-  //margin: 0 auto;
   cursor: pointer;
   background: transparent;
   border: 1px solid var(--background-buttons-light);

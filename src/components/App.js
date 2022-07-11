@@ -6,6 +6,8 @@ import { GlobalStyle } from '../styles/global';
 import Home from './Home/Home';
 import SignUpPage from './Sign/SignUpPage';
 import SignInPage from './Sign/SignInPage';
+import CheckoutPage from './Checkout/CheckoutPage';
+
 import UserContext from "./../contexts/UserContext"
 
 export default function App( ) {
@@ -17,6 +19,7 @@ export default function App( ) {
           <Route path='/' element={<Home />}/>
           <Route path='/login' element={<SignInPage />}/>
           <Route path='/sign-up' element={<SignUpPage />}/>
+          <Route path='/checkout' element={<CheckoutPage />}/>
         </Routes>
         <GlobalStyle />
       </BrowserRouter>
